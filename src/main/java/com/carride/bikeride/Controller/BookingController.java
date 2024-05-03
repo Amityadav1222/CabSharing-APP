@@ -13,7 +13,7 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-    @PostMapping("/newBooking")
+    @PostMapping("/bookride")
     public ResponseEntity<Booking> bookRide(@RequestBody Booking booking) {
         Booking bookedRide = bookingService.bookRide(booking);
         return new ResponseEntity<>(bookedRide, HttpStatus.CREATED);

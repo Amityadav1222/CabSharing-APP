@@ -5,6 +5,8 @@ import com.carride.bikeride.Repository.RideRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RideService {
     @Autowired
@@ -12,7 +14,12 @@ public class RideService {
 
     public Ride createRide(Ride ride) {
         // Logic for creating a ride
-        return rideRepository.save(ride);
+//        Ride ride1 = new Ride();
+//        ride1.setUserId(ride.getUserId());
+//        ride1.setSource(ride.getSource());
+//        ride1.setDestination(ride.getDestination());
+//        ride1.setFare(ride.getFare());
+       return rideRepository.save(ride);
     }
 
     public Ride getRideById(Long rideId) {
@@ -21,5 +28,10 @@ public class RideService {
     }
 
     // Other ride-related methods
+
+    public List<Ride> getAllRides(){
+        return rideRepository.findAll();
+
+    }
 }
 

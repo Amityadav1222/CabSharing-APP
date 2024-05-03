@@ -7,28 +7,37 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/rides")
 public class RideController {
     @Autowired
     private RideService rideService;
-    private com.carride.bikeride.Module.Ride Ride;
 
-    @PostMapping
-    public ResponseEntity<Ride> createRide(@RequestBody Ride ride) {
-        Ride createdRide = rideService.createRide(Ride);
+    @PostMapping("/riding")
+    public ResponseEntity<Object> createRide(@RequestBody Ride ride) {
+        Ride createdRide = rideService.createRide(ride);
         return new ResponseEntity<>(createdRide, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{rideId}")
+    @GetMapping("/rideId")
     public ResponseEntity<Ride> getRideById(@PathVariable Long rideId) {
         Ride ride = rideService.getRideById(rideId);
         if (ride == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
         return new ResponseEntity<>(ride, HttpStatus.OK);
     }
 
     // Other ride-related endpoints
+    @GetMapping
+
+    public ResponseEntity<Object> getAllRides(){
+        List<Ride> ride =   rideService.getAllRides();
+        return new ResponseEntity<Object>(ride, HttpStatus.OK);
+
+    }
 }
 
